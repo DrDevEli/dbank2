@@ -1,4 +1,4 @@
-import App from './App';
+import App from './App.js';
 import './index.scss';
 
-const app = new App();
+ReactDOM.render(<App />, document.getElementById('root'));
