@@ -45,7 +45,13 @@ class App {
       console.error('Transaction error:', error);
     }
   }
-
+  // Attach event listeners
+  #attachEventListeners() {
+    const form = document.getElementById("transaction-form");
+    if (form) {
+      form.addEventListener("submit", (event) => this.#handleFormSubmit(event));
+    }
+  }
 
   #render() {
     let body = html`
