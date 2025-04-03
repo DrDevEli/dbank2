@@ -10,11 +10,15 @@
     "format": "prettier --write .",
     "prebuild": "npm run prebuild --workspaces --if-present",
     "pretest": "npm run prebuild --workspaces --if-present",
-    "start": "npm start --workspaces --if-present",
+    "start": "dfx start --clean --host 127.0.0.1:8000 && npm start --workspaces --if-present",
     "test": "npm test --workspaces --if-present"
   },
   "type": "module",
   "workspaces": [
     "src/dbank2_frontend"
-  ]
+  ],
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.4"
+  }
 }

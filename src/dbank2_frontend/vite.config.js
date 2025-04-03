@@ -14,12 +14,14 @@ export default defineConfig({
       define: {
         global: "globalThis",
       },
+      loader: { '.js': 'jsx' }, // Add JSX support
     },
   },
   server: {
+    port: 3000,
     proxy: {
       "/api": {
-        target: "http://127.0.0.1:4943",
+        target: "http://127.0.0.1:8000", // Changed to port 8000
         changeOrigin: true,
       },
     },
