@@ -17,8 +17,11 @@ actor Dbank {
   //  Debug.print(debug_show(id));
 
   public func increaseValue(amount: Float) {
+    if (amount <= 0) {
+      Debug.print("Invalid deposit amount");
+      return;
+    };
     currentValue += amount;
-    Debug.print(debug_show( currentValue));
   };
 
   public func decreaseValue(amount: Float) {
@@ -39,7 +42,10 @@ public func compound(){
     let currentTime = Time.now();
     let timeElapsedNanoSTS = currentTime - startTime;
     let _timeElapsedS = timeElapsedNanoSTS / 1000000000; // Converting the nano seconds into seconds 
-    currentValue := currentValue * (0.01 ** Float.fromInt(_timeElapsedS));
+    // Compound interest formula: A = P(1 + r/n)^(nt)
+    // Using simple annual compounding for demo (n=1)
+    let interestRate = 0.01; // 1% annual
+    currentValue := currentValue * (1.0 + interestRate) ** Float.fromInt(_timeElapsedS);
     startTime := currentTime;
 }
 
