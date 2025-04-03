@@ -83,13 +83,35 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 #submit-btn {
+  // Base styles
   display: block;
   position: relative;
+  text-decoration: none;
+  border-radius: 7px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 600;
+  border: 2px #617BFF solid;
+  color: white;
+  background-color: #617BFF;
+  padding: 15px;
+  transition: all 0.2s;
+  width: 100%;
 
-  &[disabled] {
+  // States
+  &:hover {
+    border: 2px #8095FF solid;
+    background-color: #8095FF;
+  }
+
+  &:disabled {
+    border: 2px rgba(255, 255, 255, 0.1) solid;
+    background-color: rgba(255, 255, 255, 0.1);
     cursor: not-allowed;
   }
 
+  // Loading state
   &.loading {
     color: transparent;
     &:after {
@@ -109,29 +131,21 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to { 
+    transform: rotate(360deg);
+    will-change: transform; 
+  }
 }
-  text-decoration: none;
-  border-radius: 7px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  font-size: 20px;
-  font-weight: 600;
-  border: 2px #617BFF solid;
-  color: white;
-  background-color: #617BFF;
-  padding: 15px;
-  transition: all 0.2s;
-  width: 100%;
 
-  &:hover {
-    border: 2px #8095FF solid;
-    background-color: #8095FF;
-  }
-
-  &:disabled {
-    border: 2px rgba(255, 255, 255, 0.1) solid;
-    background-color: rgba(255, 255, 255, 0.1);
-    cursor: not-allowed;
-  }
+button:focus {
+  outline: 2px solid $primary;
+  outline-offset: 2px;
+}
+.error-message {
+  color: #ff4444;
+  background: #ffebee;
+  padding: 10px;
+  border-radius: 4px;
+  margin: 10px 0;
+  text-align: center;
 }

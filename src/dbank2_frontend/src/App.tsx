@@ -21,7 +21,7 @@ const App = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: { preventDefault: () => void; target: any; }) => {
     e.preventDefault();
     const form = e.target;
     const topUpAmount = parseFloat(form.elements.topUp.value) || 0;
@@ -47,7 +47,6 @@ const App = () => {
       form.reset();
     } catch (err) {
       console.error('Transaction error:', err);
-      setError(`Transaction failed: ${err.message}`);
     } finally {
       setIsLoading(false);
     }
