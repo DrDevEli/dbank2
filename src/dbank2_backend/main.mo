@@ -38,15 +38,20 @@ public query func checkBalance(): async Float{
   return currentValue;
 };
 
-public func compound(){
+public func compound() {
     let currentTime = Time.now();
-    let timeElapsedNanoSTS = currentTime - startTime;
-    let _timeElapsedS = timeElapsedNanoSTS / 1000000000; // Converting the nano seconds into seconds 
-    // Compound interest formula: A = P(1 + r/n)^(nt)
-    // Using simple annual compounding for demo (n=1)
+    let timeElapsedNano = currentTime - startTime;
+    let timeElapsedYears = Float.fromInt(timeElapsedNano) / 1_000_000_000.0 / 60.0 / 60.0 / 24.0 / 365.25;
+    
+    // More accurate compound interest calculation
     let interestRate = 0.01; // 1% annual
-    currentValue := currentValue * (1.0 + interestRate) ** Float.fromInt(_timeElapsedS);
+    currentValue := currentValue * (1.0 + interestRate) ** timeElapsedYears;
     startTime := currentTime;
+    
+    // Ensure balance never goes negative
+    if (currentValue < 0) {
+        currentValue := 0.0;
+    }
 }
 
 }
