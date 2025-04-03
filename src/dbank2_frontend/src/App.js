@@ -19,7 +19,7 @@ class App {
   ///Fetch balance from backend
   async #fetchBalance(){
     try{
-      this.currentBalance = await dbank2_backend.currentBalance();
+      this.currentBalance = await dbank2_backend.checkBalance();
       this.#render(); 
     } catch(error){
       console.log('Error fetching balance', error);
@@ -57,9 +57,9 @@ class App {
     let body = html`
       <div class="container">
       <img src= ${logo} alt="DBank logo" width="100"/>
-      <h1>Current Balance: $<span id="value">${this.currentBalance}</span></h1>
+      <h1>Current Balance: <span id="value">${this.currentBalance}</span></h1>
       <div class="divider"></div>
-      <form action="#">
+      <form id="transaction-form">
       <h2>Amount to Top Up</h2>
       <input id="input-amount" type="number" step="0.01" min=0 name="topUp" value=""/>
       <h2>Amount to Withdraw</h2>
