@@ -133,11 +133,3 @@ input[type="number"]::-webkit-outer-spin-button {
     background-color: rgba(255, 255, 255, 0.1);
   }
 }
-
-textarea[name="address"] {
-  resize: none;
-  font-size: 16px;
-  font-weight: 600;
-  padding: 10px 2.7rem;
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-}
