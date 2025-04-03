@@ -39,7 +39,7 @@ public func compound(){
     let currentTime = Time.now();
     let timeElapsedNanoSTS = currentTime - startTime;
     let _timeElapsedS = timeElapsedNanoSTS / 1000000000; // Converting the nano seconds into seconds 
-    currentValue := currentValue * (0.05 ** Float.fromInt(_timeElapsedS));
+    currentValue := currentValue * (0.01 ** Float.fromInt(_timeElapsedS));
     startTime := currentTime;
 }
 
