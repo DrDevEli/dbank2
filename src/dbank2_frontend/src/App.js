@@ -28,21 +28,30 @@ class App {
    // Handle form submission
    async #handleFormSubmit(event) {
     event.preventDefault();
+    const form = event.target;
+    const submitBtn = form.querySelector('#submit-btn');
+    submitBtn.disabled = true;
+    submitBtn.classList.add('loading');
+
     const topUpAmount = parseFloat(document.getElementById('input-amount').value) || 0;
     const withdrawalAmount = parseFloat(document.getElementById('withdrawal-amount').value) || 0;
 
     try {
       if (topUpAmount > 0) {
-        await dbank2_backend.increaseValue(topUpAmount); // Example backend call
+        await dbank2_backend.increaseValue(topUpAmount);
       }
       if (withdrawalAmount > 0) {
-        await dbank2_backend.decreaseValue(withdrawalAmount); // Example backend call
+        await dbank2_backend.decreaseValue(withdrawalAmount);
       }
 
-      // Re-fetch the updated balance
       await this.#fetchBalance();
     } catch (error) {
       console.error('Transaction error:', error);
+      // Show error to user
+      alert(`Transaction failed: ${error.message}`);
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('loading');
     }
   }
   // Attach event listeners
